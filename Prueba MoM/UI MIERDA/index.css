@@ -1,0 +1,35 @@
+
+*{
+  box-sizing: border-box;
+  COLOR: #404040;
+  font-size: 100px;
+  background-color: lime;
+}
+
+.card-body{
+  padding-top: 100px;
+  padding-left: 400px;
+  width: 15vh;
+  height: 50vh;
+}
+.foto{
+  width: 35vh;
+  height: 35vh;
+  opacity: 80%;
+}
+#ch{
+  height: 400px;
+  width: 400px;
+}
+#c{
+  font-size: 20px;
+}
+#img{
+  height: 100%;
+  width: 100%;
+  opacity: 80%;
+}
+
+.misInputs2{
+  padding-left: 1002px;
+}

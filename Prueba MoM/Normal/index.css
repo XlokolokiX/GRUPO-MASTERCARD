@@ -1,0 +1,50 @@
+
+*{
+  box-sizing: border-box;
+  COLOR: #404040;
+}
+
+.card-body{
+  .padding: 200px;
+  width: 80vh;
+  height: 100vh;
+}
+.foto{
+  width: 35px;
+  height: 35px;
+  opacity: 80%;
+}
+.misInputs {
+  display: block;
+  width: 90%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  line-height: 1.5;
+  background-color: transparent;
+  border: 1px solid black;
+  border-bottom: 1px solid gray;
+  border-style: groove;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.boton{
+  display: inline-block;
+  font-weight: 400;
+  color: black;    text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 2px groove #6c757d;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+}
