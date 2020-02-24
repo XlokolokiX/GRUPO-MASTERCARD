@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8">
+    <title>OpenWeather</title>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+  </head>
+    <body class="bdy">
+      <div class="topnav">
+        <h1 class="Titulo"><img src="resources/Cloud.png" class="imagen">OpenWeather</h1>
+        <input type="text" id="Buscador" name="Buscador" placeholder="Ciudad... New York.." maxlength="20">
+        <button type="button" name="button" id="boton">Buscar</button>
+      </div>
+      <div class="Espacio">
+        <img src="resources/rain.webp" id="tiempoimg">
+        <h1 id="temperatura"></h1>
+      </div>
+      <div id="Graficas">
+      </div>
+
+      <script type="text/javascript">
+
+        $(function(){
+          $("#boton").click(function(){
+            var ciudad = $("#Buscador").val();
+
+            $.ajax({
+              method: "GET",
+              url: "http://api.openweathermap.org/data/2.5/weather",
+              data: {
+                q:ciudad,
+                appid: "0c7c71ec6908b6878c0bdd87466c306f",
+                units: "metric"
+              },
+              success: function(respuesta){
+                $("#temperatura").text(respuesta.main.temp);
+              },
+            });
+          });
+        });
+
+      </script>
+
+  </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>
