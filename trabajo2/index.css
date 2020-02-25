@@ -1,0 +1,120 @@
+
+*{
+  box-sizing: border-box;
+  font-size: 1.5vh;
+}
+.bdy{
+  background-image: url("resources/difere.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+.topnav{
+  height: 3.5vw;
+  width: 100%;
+  background-color: #F0F3F4;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+}
+.Titulo{
+  opacity: 50%;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 1.5vw;
+  letter-spacing: 0px;
+  word-spacing: 0px;
+  -webkit-text-stroke-width: 0.1vw;
+  -webkit-text-stroke-color: black;
+  outline-style: groove;
+  color: transparent;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform:none;
+  text-align: left;
+}
+.imagen{
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-left: 1vw;
+}
+#boton{
+  display: inline-block;
+  font-weight: 400;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 2px groove transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+#tiempoimg{
+  height: 22vh;
+  width: 22vh;
+  border-radius: 12vh;
+  margin-left: 5vh;
+  margin-top: 1.5vw;
+}
+#Buscador {
+  width: 25%;
+  height: calc(1.5em + .75rem + 2px);
+  font-size: 1vw;
+  font-weight: 400;
+  color: black;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-bottom: 1px solid gray;
+  border-style: groove;
+  border-radius: 10px;
+  text-align: left;
+  margin-left: auto;
+}
+.Espacio{
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  border-top-left-radius: 20vh;
+  border-bottom-left-radius: 20vh;
+  border-bottom-right-radius: 4vh;
+  border-top-right-radius: 4vh;
+  width: 90%;
+  height: 40%;
+  margin-top: 5vh;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  background-color: rgba(254,254,254,0.7);
+}
+
+.Graficas{
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  border-top-right-radius: 20vh;
+  border-bottom-right-radius: 20vh;
+  border-bottom-left-radius: 4vh;
+  border-top-left-radius: 4vh;
+  width: 90%;
+  height: 40%;
+  margin-top: 5vh;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  background-color: rgba(254,254,254,0.7);
+}
+.Graficas #highcharts-zl3d5he-0 .highcharts-root .highcharts-background{
+    fill: rgba(254, 254, 254, 0.7);
+    x: 0;
+    y: 0;
+    width: 687;
+    height: 263;
+    rx: 0;
+    ry: 0;
+}
+
+.grow2 { transition: all .2s ease-in-out; }
+.grow2:hover { transform: scale(1.05); }

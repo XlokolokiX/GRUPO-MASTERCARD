@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8">
+    <title>OpenWeather</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+  </head>
+    <body class="bdy">
+      <div class="topnav">
+        <h1 class="Titulo"><img src="resources/Cloud.png" class="imagen">OpenWeather</h1>
+        <input type="text" id="Buscador" name="Buscador" placeholder="Ciudad... New York.." maxlength="20">
+        <button type="button" name="button" id="boton">Buscar</button>
+      </div>
+      <div class="Espacio grow2">
+        <div class="container-fluid mb-4">
+          <div class="row">
+            <div class="left-column px-4 col-md-6">
+              <div class="card-body">
+                <img src="resources/solico.png" id="tiempoimg">
+              </div>
+            </div>
+            <div class="right-column px-4 col-md-4">
+              <div class="card-body">
+                <h1 id="des">----------</h1>
+                <li id="temperatura">-- *C min:--*C max:--*C</li>
+                <li id="humedad">-- %</li>
+                <li id="sensa">--*C Sensacion Termica</li>
+                <li id="press">--hpa</li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Graficas grow2"></div>
+
+      <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <script src="http://code.highcharts.com/modules/exporting.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+      <script type="text/javascript">
+
+        $(function(){
+
+          $("#boton").click(function(){
+          var ciudad = $("#Buscador").val();
+          function forecast (){
+
+          return  $.ajax({
+              method: "GET",
+              url: "http://api.openweathermap.org/data/2.5/forecast",
+              data: {
+                q:ciudad,
+                appid: "0c7c71ec6908b6878c0bdd87466c306f",
+                lang: "es",
+                units: "metric"
+              },
+              success: function(respuesta){
+                console.log(respuesta);
+              },
+              })
+              }
+
+            function weather() {
+
+            return $.ajax({
+              method: "GET",
+              url: "http://api.openweathermap.org/data/2.5/weather",
+              data: {
+                q:ciudad,
+                appid: "0c7c71ec6908b6878c0bdd87466c306f",
+                lang: "es",
+                units: "metric"
+              },
+              success: function(respuesta){
+                console.log(respuesta);
+              }
+              });
+              }
+
+              $.when(forecast(), weather()).done(function(fore_respuesta, weathe_respuesta){
+
+                var descri = weathe_respuesta[0].weather[0].description;
+                $("#des").html(descri);
+                var resptemp =  weathe_respuesta[0].main.temp + "*C  " + weathe_respuesta[0].main.temp_min + "*C min  " + weathe_respuesta[0].main.temp_max + "*C max";
+                $("#temperatura").html(resptemp);
+                var resphum =  weathe_respuesta[0].main.humidity + "% humedad";
+                $("#humedad").html(resphum);
+                var sensater =  weathe_respuesta[0].main.feels_like + "*C Sensacion Termica";
+                $("#sensa").html(sensater);
+                var presion =  weathe_respuesta[0].main.pressure + " hpa";
+                $("#press").html(presion);
+
+                var icotempo =  weathe_respuesta[0].weather[0].main;
+
+                switch (icotempo) {
+                  case "Clear":
+                  $(".bdy")[0].style.backgroundImage= "url('resources/sol.jpg')";
+                  $("#tiempoimg")[0].src="resources/solico.png";
+                    break;
+                  case "Clouds":
+                  $(".bdy")[0].style.backgroundImage= "url('resources/cielo.gif')";
+                  $("#tiempoimg")[0].src="resources/solinube.png";
+                    break;
+                  case "Rain":
+                  $(".bdy")[0].style.backgroundImage= "url('resources/rain.webp')";
+                  $("#tiempoimg")[0].src="resources/lluviaico.png";
+                    break;
+                  case "Snow":
+                  $(".bdy")[0].style.backgroundImage= "url('resources/nieve.gif')";
+                  $("#tiempoimg")[0].src="resources/neba.png";
+                    break;
+                  default:
+                  $(".bdy")[0].style.backgroundImage= "url('resources/sol.jpg')";
+                  $("#tiempoimg")[0].src="resources/solico.png";
+                };
+                var temp1 = new Array();
+                var temp2 = new Array();
+                var temp = new Array();
+                var hora = new Array();
+
+                var num = fore_respuesta[0].list.length;
+                for (i=0;i<num;i++) {
+                 temp.push(fore_respuesta[0].list[i].main.temp);
+                 temp1.push(fore_respuesta[0].list[i].main.temp_min);
+                 temp2.push(fore_respuesta[0].list[i].main.temp_max);
+                 hora.push(fore_respuesta[0].list[i].dt_txt.split(" ")[1]);
+                }
+                console.log(temp);
+
+                $('.Graficas').highcharts({
+                  title:{text:'*C en Funcion del horario'},
+                  xAxis:{categories:hora},
+                  yAxis:{title:'temperatura *C',plotLines:[{value:0,width:1,color:'#808080'}]},
+                  tooltip:{valueSuffix:'*C'},
+                  legend:{layout:'vertical',align:'right',verticalAlign:'middle',borderWidth:0},
+                  series:[{type: 'spline',name: 'Tmax',data: temp2},
+                  {type: 'spline',name: 'prom',data: temp},
+                  {type: 'spline',name: 'Tmin',data: temp1},
+                ],
+                  plotOptions:{line:{dataLabels:{enabled:true}}}
+                });
+              });
+              /*[fore_respuesta[0].list[i].dt_txt]*/
+            });
+          });
+      </script>
+  </body>
+</html>
